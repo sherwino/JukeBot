@@ -331,7 +331,7 @@ function JukeBot() {
 			} else {
 				thumbsDownElement.click();
 			}
-			chrome.runtime.sendMessage({
+			browser.runtime.sendMessage({
 				event: 'voted',
 				data: {
 					result: !!upvote

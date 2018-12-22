@@ -5,7 +5,7 @@ window.onload = function () {
     var autoDoot = new AutoDoot(jukeBot);
     var notifier = new Notifier(jukeBot);
 
-    chrome.storage.sync.get('autoDootEnabled', function (response) {
+    browser.storage.sync.get('autoDootEnabled', function (response) {
         if (response.autoDootEnabled != null) {
             if (response.autoDootEnabled) {
                 autoDoot.start();
@@ -13,7 +13,7 @@ window.onload = function () {
         }
     });
     
-    chrome.storage.sync.get('notifierEnabled', function (response) {
+    browser.storage.sync.get('notifierEnabled', function (response) {
         if (response.notifierEnabled != null) {
             if (response.notifierEnabled) {
                 notifier.start();

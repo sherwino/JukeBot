@@ -1,7 +1,7 @@
 function VoteWatcher(jukeBot) {
     const handlerId = 'voteWatcher';
 
-    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         switch (request.event) {
             case 'popup_loaded':
                 updateVote();
@@ -18,7 +18,7 @@ function VoteWatcher(jukeBot) {
     
     function updateVote() {
         if (jukeBot && jukeBot.voteState) {
-            chrome.runtime.sendMessage({
+            browser.runtime.sendMessage({
                 event: 'vote_changed',
                 data: {
                     voteState: jukeBot.voteState

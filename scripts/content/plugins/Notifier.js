@@ -3,7 +3,7 @@ function Notifier(jukeBot) {
     var running = false;
     var self = this;
 
-    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         if (request.event == 'notifier_toggled') {
             if (request.data.enabled) {
                 self.start();
@@ -18,7 +18,7 @@ function Notifier(jukeBot) {
         for (var i = 0; i < newMessages.length; i++) {
             var message = newMessages[i];
             if (message.isAlert || message.author != jukeBot.currentUser) {
-                chrome.runtime.sendMessage({
+                browser.runtime.sendMessage({
                     event: 'message_received',
                     data: {
                         message: newMessages[i]

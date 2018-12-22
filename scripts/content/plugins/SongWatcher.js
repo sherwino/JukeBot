@@ -1,7 +1,7 @@
 function SongWatcher(jukeBot) {
     const handlerId = 'songWatcher';
 
-    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         if (request.event == 'popup_loaded') {
             updateSong();
         }
@@ -9,7 +9,7 @@ function SongWatcher(jukeBot) {
     
     function updateSong() {
         if (jukeBot && jukeBot.currentSong && jukeBot.currentDj) {
-            chrome.runtime.sendMessage({
+            browser.runtime.sendMessage({
                 event: 'song_changed',
                 data: {
                     song: jukeBot.currentSong,

@@ -10,28 +10,28 @@ window.onload = function () {
     pageElements = findElements();
     initHandlers();
 
-    chrome.storage.sync.get('autoDootEnabled', function (response) {
+    browser.storage.sync.get('autoDootEnabled', function (response) {
         autoDootEnabled = response.autoDootEnabled;
         pageElements.autoDootCheckbox.checked = autoDootEnabled;
         animator.toggleClass(pageElements.autoDootTitle, 'started', autoDootEnabled);
     });
 
-    chrome.storage.sync.get('notifierEnabled', function (response) {
+    browser.storage.sync.get('notifierEnabled', function (response) {
         notifierEnabled = response.notifierEnabled;
         pageElements.notifierCheckbox.checked = notifierEnabled;
         animator.toggleClass(pageElements.notifierTitle, 'started', notifierEnabled);
     });
 
-    chrome.storage.sync.get('notifierShowAll', function (response) {
+    browser.storage.sync.get('notifierShowAll', function (response) {
         pageElements.notifierShowAllCheckbox.checked = response.notifierShowAll;
     });
 
-    chrome.storage.sync.get('notifierShowAlerts', function (response) {
+    browser.storage.sync.get('notifierShowAlerts', function (response) {
         pageElements.notifierShowAlertsCheckbox.checked = response.notifierShowAlerts;
     });
 
-    optionsVisible = chrome.extension.getBackgroundPage().notifierOptionsVisible;
-    if (chrome.extension.getBackgroundPage().notifierOptionsVisible) {
+    optionsVisible = browser.extension.getBackgroundPage().notifierOptionsVisible;
+    if (browser.extension.getBackgroundPage().notifierOptionsVisible) {
         pageElements.optionsContainer.style.display = 'block';
         pageElements.optionsContainer.style.height = pageElements.optionsContainer.style.maxHeight;
         pageElements.notifierOptions.style.opacity = 1;
@@ -42,7 +42,7 @@ window.onload = function () {
     sendMessage('popup_loaded');
 };
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     switch (request.event) {
         case 'song_changed':
             updateSong(request.data);
@@ -96,7 +96,7 @@ function initHandlers() {
         this.checked = !this.checked;
         
         var self = this;
-        chrome.storage.sync.set({'autoDootEnabled': !autoDootEnabled}, function () {
+        browser.storage.sync.set({'autoDootEnabled': !autoDootEnabled}, function () {
             autoDootEnabled = !autoDootEnabled;
             animator.toggleClass(pageElements.autoDootTitle, 'started', autoDootEnabled);
             self.checked = !self.checked;
@@ -108,7 +108,7 @@ function initHandlers() {
         this.checked = !this.checked;
 
         var self = this;
-        chrome.storage.sync.set({'notifierEnabled': !notifierEnabled}, function () {
+        browser.storage.sync.set({'notifierEnabled': !notifierEnabled}, function () {
             notifierEnabled = !notifierEnabled;
             animator.toggleClass(pageElements.notifierTitle, 'started', notifierEnabled);
             self.checked = !self.checked;
@@ -121,7 +121,7 @@ function initHandlers() {
         this.checked = !this.checked;
         
         var self = this;
-        chrome.storage.sync.set({'notifierShowAll': newValue}, function () {
+        browser.storage.sync.set({'notifierShowAll': newValue}, function () {
             self.checked = !self.checked;
         });
     };
@@ -131,7 +131,7 @@ function initHandlers() {
         this.checked = !this.checked;
         
         var self = this;
-        chrome.storage.sync.set({'notifierShowAlerts': newValue}, function () {
+        browser.storage.sync.set({'notifierShowAlerts': newValue}, function () {
             self.checked = !self.checked;
         });
     };
@@ -140,7 +140,7 @@ function initHandlers() {
 }
 
 function toggleNotifierOptions() {
-    if (!chrome.extension.getBackgroundPage().notifierOptionsVisible) {
+    if (!browser.extension.getBackgroundPage().notifierOptionsVisible) {
         animator.slideDown(pageElements.optionsContainer, function () {
             animator.fadeIn(pageElements.notifierOptions, null, 400);
         });
@@ -150,13 +150,13 @@ function toggleNotifierOptions() {
         }, 200);
     }
 
-    chrome.extension.getBackgroundPage().notifierOptionsVisible = !chrome.extension.getBackgroundPage().notifierOptionsVisible;
+    browser.extension.getBackgroundPage().notifierOptionsVisible = !browser.extension.getBackgroundPage().notifierOptionsVisible;
 }
 
 function sendMessage(event, data, callback) {
-    chrome.tabs.query({url: '*://app.jqbx.fm/*', currentWindow: true}, function (tabs) {
+    browser.tabs.query({url: '*://app.jqbx.fm/*', currentWindow: true}, function (tabs) {
         if (tabs.length > 0) {
-            chrome.tabs.sendMessage(tabs[0].id, {
+            browser.tabs.sendMessage(tabs[0].id, {
                 event: event,
                 data: data
             }, callback);

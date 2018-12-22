@@ -3,13 +3,13 @@ function AutoDoot(jukeBot) {
     var running = false;
     var self = this;
 
-    chrome.storage.sync.get('autoDootEnabled', function (response) {
+    browser.storage.sync.get('autoDootEnabled', function (response) {
         if (response.autoDootEnabled != null && response.autoDootEnabled == true) {
             self.start();
         }
     });
 
-    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         if (request.event == 'auto_doot_toggled') {
             if (request.data.enabled) {
                 self.start();
