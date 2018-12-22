@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "JukeBot - Extension based on the #1 JQBX helper!",
+    "name": "JukeBot - The #1 JQBX helper!",
     "short_name": "JukeBot",
     "description": "Provides a variety of utilities for JQBX.fm like auto-upvoting, and notifications",
     "version": "0.1",
@@ -23,7 +23,7 @@
     "browser_specific_settings": {
         "gecko": {
           "id": "sherwinonthebae@gmail.com",
-          "strict_min_version": "42.0"
+          "strict_min_version": "57.0"
         }
       },
     "background": {

@@ -1,6 +1,6 @@
 # JukeBot for Firefox
 
-A Firfox alternative to [@austinhaydon's JukeBot](https://github.com/austinhaydon/JukeBot).
+A Firefox alternative to [@austinhaydon's JukeBot](https://github.com/austinhaydon/JukeBot).
 The main objective of this extension is to provide additional functionality to http://jqbx.fm/.
 
 This plugin should help you get notifications, and help you upvote songs when you are in another tab.
@@ -15,6 +15,9 @@ This plugin should help you get notifications, and help you upvote songs when yo
 
 ![Notifications](https://i.gyazo.com/d848d336f07c6ee374651f675709f76e.png)
 
+## Installation
+
+You could install the plugin by going to the [Chrome Web Store](https://chrome.google.com/webstore/detail/jukebot-the-1-jqbx-helper/jpainnbkagpaaeepjmibeaoakehpnhgo),or the [Firefox's Add-ons marketplace](https://addons.mozilla.org/en-US/firefox/addon/jukebot/).
 
 ## Credit
 
